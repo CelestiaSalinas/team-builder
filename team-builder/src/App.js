@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import TeamMembers from "./TeamMember";
+import TeamMembers from "./TeamMembers";
+import Forms from "./Forms";
 
 function App() {
   const [teamMember, setTeamMember] = useState([
@@ -12,8 +12,19 @@ function App() {
       role: "front-end"
     }
   ]);
+
+  const addTeamMember = member => {
+    const newMember = {
+      id: Date.now(),
+      title: member.name,
+      email: member.email,
+      role: member.role
+    };
+    setTeamMember({ ...teamMember, newMember });
+  };
   return (
     <div className="App">
+      <Forms teamMember={addTeamMember} />
       <TeamMembers teamMember={teamMember} />
     </div>
   );
